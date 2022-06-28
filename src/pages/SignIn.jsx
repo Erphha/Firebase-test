@@ -1,23 +1,39 @@
 import "./SignIn.css";
 import SignInForm from "../components/signIn-logIn-form/SignInForm";
-import { useSelector, useDispatch } from "react-redux";
-import ReactSwitch from "react-switch";
+import styled, { ThemeProvider } from "styled-components";
+import { useDarkMode } from "../styles/useDarkMode";
+import { Toggle } from "../components/UI/Toggle";
+import { GlobalStyles, lightTheme, darkTheme } from "../styles/globalStyles";
 
+const Container = styled.div`
+  width: 100vw;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
+
+const SignNav = styled.div`
+width: 100vw;
+height: 13vh;
+display: block;
+`
 
 function SignIn() {
-  const dispatch = useDispatch();
-  const lightTheme = useSelector((state) => state.lightTheme);
-  const toggleTheme = () => {
-    dispatch({ type: "toggleTheme" });
-  };
+  const [theme, toggleTheme] = useDarkMode();
+const themeMode = theme ==='light' ? lightTheme : darkTheme;
   return (
-    <div className="SignInPage" id={lightTheme === true ? "light" : "dark"}>
-      <SignInForm />
-      <div className="switch">
-        <label> {lightTheme === true ? "Light Mode" : "Dark Mode"}</label>
-        <ReactSwitch onChange={toggleTheme} checked={lightTheme === false} />
-      </div>
-    </div>
+    <ThemeProvider theme={themeMode}>
+      <SignNav className = 'SignNav'>
+        <Toggle theme={theme} toggleTheme={toggleTheme}/>
+      </SignNav>
+        
+      <Container>
+        <GlobalStyles />
+        <SignInForm />
+      </Container>
+    </ThemeProvider>
   );
 }
 
