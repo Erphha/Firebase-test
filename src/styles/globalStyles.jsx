@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
 
-.container{
+body{
     background: ${({ theme }) => theme.background};
     transition: all 0.5s linear;
 }

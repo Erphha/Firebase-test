@@ -1,20 +1,23 @@
-import classes from './SignUp.module.css'
-import SignUpForm from './../components/signForm/SignUpForm';
-import {Toggle} from '../components/UI/Toggle'
-import {useDarkMode} from '../styles/useDarkMode'
-import { GlobalStyles } from '../styles/globalStyles';
+import classes from "./SignUp.module.css";
+import SignUpForm from "./../components/signForm/SignUpForm";
+import { ThemeProvider } from "styled-components";
+import { Toggle } from "../components/UI/Toggle";
+import { useDarkMode } from "../styles/useDarkMode";
+import { GlobalStyles, lightTheme, darkTheme } from "../styles/globalStyles";
 
 const SignUp = () => {
+  const [theme, toggleTheme] = useDarkMode();
+  const themeMode = theme === "light" ? lightTheme : darkTheme;
 
-    const [theme, toggleTheme] = useDarkMode()
+  return (
+    <ThemeProvider theme={themeMode}>
+      <div className={classes.container}>
+        <GlobalStyles />
+        <Toggle theme={theme} toggleTheme={toggleTheme} />
+        <SignUpForm />
+      </div>
+    </ThemeProvider>
+  );
+};
 
-    return ( 
-        <div className={classes.container}>
-            <GlobalStyles/>
-            <Toggle theme={theme} toggleTheme={toggleTheme}/>
-            <SignUpForm/>
-        </div>
-     );
-}
- 
 export default SignUp;
