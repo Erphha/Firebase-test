@@ -1,33 +1,29 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useContext } from 'react';
-import { SignContext } from './SignContext';
-import {
-  BoldLink,
-  BoxContainer,
-  FormContainer,
-  Input,
-  MutedLink,
-  SubmitButton,
-} from "./Common";
+import { useContext } from "react";
+import { SignContext } from "./SignContext";
+import "./SignUp.css";
 
 const SignUpForm = (props) => {
-    const { switchToSignIn } = useContext(SignContext);
+  const { switchToSignIn } = useContext(SignContext);
 
   return (
-    <BoxContainer>
-      <FormContainer>
-        <Input type="text" placeholder="نام کاربری" />
-        <Input type="email" placeholder="ایمیل" />
-        <Input type="password" placeholder="رمز عبور" />
-        <Input type="password" placeholder="تایید رمز عبور" />
-      </FormContainer>
-      <SubmitButton className="my-3" type="submit">
+    <div className="FormBoxContainer">
+      <form className="FormContainer">
+        <input className="Input" type="text" placeholder="نام کاربری" />
+        <input className="Input" type="email" placeholder="ایمیل" />
+        <input className="Input" type="password" placeholder="رمز عبور" />
+        <input className="Input" type="password" placeholder="تایید رمز عبور" />
+      </form>
+      <button className="SubmitButton my-3" type="submit">
         ورود به حساب کاربری
-      </SubmitButton>
-      <MutedLink href="#">
-        اکانت ویگل دارید؟ <BoldLink href="#" onClick={switchToSignIn}>وارد شوید!</BoldLink>
-      </MutedLink>
-    </BoxContainer>
+      </button>
+      <a className="MutedLink" href="#">
+        اکانت ویگل دارید؟{" "}
+        <a className="BoldLink" href="#" onClick={switchToSignIn}>
+          وارد شوید!
+        </a>
+      </a>
+    </div>
   );
 };
 
