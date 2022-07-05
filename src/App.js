@@ -1,9 +1,11 @@
 import AccountBox from "./components/signBox/SignBox";
-import './App.css'
+import { useSelector } from "react-redux";
+import "./App.css";
 
 function App() {
+  const dark = useSelector((state) => state.dark);
   return (
-    <div className="AppContainer">
+    <div className="AppContainer" id={dark ? "darkMode" : "lightMode"}>
       <AccountBox />
     </div>
   );

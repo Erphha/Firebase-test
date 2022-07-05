@@ -1,0 +1,49 @@
+
+#lightMode.BoxContainer {
+  background-color: #fff;
+}
+#darkMode.BoxContainer {
+  background-color: #ecf0f1;
+}
+
+#lightMode .BackDrop {
+  background: rgb(155, 89, 182);
+  background: linear-gradient(
+    54deg,
+    rgba(155, 89, 182, 1) 12%,
+    rgba(126, 20, 218, 1) 94%
+  );
+}
+#darkMode .BackDrop {
+  background: #636e72;
+  background: linear-gradient(54deg, #636e72 12%, #2d3436 94%);
+}
+
+#lightMode .Input:focus {
+  outline: none;
+  border-bottom: 2px solid rgb(155, 89, 182);
+}
+#darkMode .Input:focus {
+  outline: none;
+  border-bottom: 2px solid #636e72;
+}
+
+#lightMode .MutedLink {
+  color: rgba(200, 200, 200, 0.8);
+}
+#darkMode .MutedLink {
+  color: #636e72;
+}
+
+#lightMode .SubmitButton {
+  background: rgb(155, 89, 182);
+  background: linear-gradient(
+    54deg,
+    rgba(155, 89, 182, 1) 12%,
+    rgba(126, 20, 218, 1) 94%
+  );
+}
+#darkMode .SubmitButton {
+  background: #636e72;
+  background: linear-gradient(54deg, #636e72 12%, #2d3436 94%);
+}

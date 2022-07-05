@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { darkModeActions } from '../../redux/redux'
 import SignUpForm from "./SignUpForm";
 import "./SignBox.css";
+import "./SignDarkMode.css"
 
 const backdropVariants = {
   expanded: {
@@ -31,7 +32,6 @@ const expandingTransition = {
 const SignBox = () => {
   const dispatch = useDispatch()
   const dark = useSelector(state => state.dark)
-  // const [darkMode, setDarkMode] = useState(false)
   console.log(dark);
   const [isExpanded, setExpanded] = useState(false);
   const [active, setActive] = useState("signIn");
@@ -64,7 +64,7 @@ const SignBox = () => {
 
   return (
     <SignContext.Provider value={contextValue}>
-      <div className="BoxContainer">
+      <div className="BoxContainer" id={dark?'darkMode':'lightMode'}>
         <div className="TopContainer">
           <motion.div
             className="BackDrop"
