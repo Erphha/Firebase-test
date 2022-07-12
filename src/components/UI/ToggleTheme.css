@@ -1,0 +1,15 @@
+.toggle-theme{
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    width: 10%;
+    display:flex;
+    align-items:baseline;
+    justify-content:space-around;
+    transition: all, 240ms linear;
+}
+
+#darkMode .toggle-theme-header, 
+#darkMode .bi{
+    color: #fff;
+}

@@ -2,11 +2,11 @@ import LoginForm from "./LoginForm";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { SignContext } from "./SignContext";
-import { useSelector, useDispatch } from "react-redux";
-import { darkModeActions } from '../../redux/redux'
+import { useSelector } from "react-redux";
 import SignUpForm from "./SignUpForm";
+import ToggleTheme from "../UI/ToggleTheme";
 import "./SignBox.css";
-import "./SignDarkMode.css"
+import "./SignDarkMode.css";
 
 const backdropVariants = {
   expanded: {
@@ -30,15 +30,10 @@ const expandingTransition = {
 };
 
 const SignBox = () => {
-  const dispatch = useDispatch()
-  const dark = useSelector(state => state.dark)
+  const dark = useSelector((state) => state.dark);
   console.log(dark);
   const [isExpanded, setExpanded] = useState(false);
   const [active, setActive] = useState("signIn");
-
-  const darkModeHandler =()=>{
-    dispatch(darkModeActions.toggleTheme())
-  }
 
   const expandingAnimationHandler = () => {
     setExpanded(true);
@@ -64,7 +59,7 @@ const SignBox = () => {
 
   return (
     <SignContext.Provider value={contextValue}>
-      <div className="BoxContainer" id={dark?'darkMode':'lightMode'}>
+      <div className="BoxContainer" id={dark ? "darkMode" : "lightMode"}>
         <div className="TopContainer">
           <motion.div
             className="BackDrop"
@@ -92,8 +87,8 @@ const SignBox = () => {
           {active === "signIn" && <LoginForm />}
           {active === "signUp" && <SignUpForm />}
         </div>
-        <p onClick={darkModeHandler}>Toggle</p>
       </div>
+        <ToggleTheme />
     </SignContext.Provider>
   );
 };
