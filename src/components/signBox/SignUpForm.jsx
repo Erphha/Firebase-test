@@ -16,7 +16,7 @@ const SignUpForm = (props) => {
 	const { switchToSignIn } = useContext(SignContext);
 
 		const handleChange =(e)=>{
-			setData(prevData=>({...prevData,[e.target.name]:e.target.value}));
+			setData({...data, [e.target.name]:e.target.value});
 		};
 
 		const handleSubmit= async(e)=>{
@@ -31,12 +31,12 @@ const SignUpForm = (props) => {
 	return (
 		<div className="FormBoxContainer">
 			<form className="FormContainer" onSubmit={handleSubmit}>
-				<input className="Input" type="text" defaultValue={name} onChange={handleChange} placeholder="نام کاربری" />
-				<input className="Input" type="email" defaultValue={email} onChange={handleChange} placeholder="ایمیل" />
-				<input className="Input" type="password" defaultValue={password} onChange={handleChange} placeholder="رمز عبور" />
-				<input className="Input" type="password" defaultValue={confirmPass} onChange={handleChange} placeholder="تایید رمز عبور" />
+				<input className="Input" type="text" name='name' value={name} onChange={handleChange} placeholder="نام کاربری" />
+				<input className="Input" type="email" name='email' value={email} onChange={handleChange} placeholder="ایمیل" />
+				<input className="Input" type="password" name='password' value={password} onChange={handleChange} placeholder="رمز عبور" />
+				<input className="Input" type="password" name='confirmPass' value={confirmPass} onChange={handleChange} placeholder="تایید رمز عبور" />
         {error? <p className='error'>{error}</p>:null}
-			<button className="SubmitButton my-3" type="submit">
+			<button className="SubmitButton my-3">
 				ورود به حساب کاربری
 			</button>
 			</form>
