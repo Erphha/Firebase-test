@@ -1,5 +1,6 @@
 // import AccountBox from "./components/signBox/SignBox";
 import Home from "./pages/Home";
+import Profile from './pages/Profile'
 import RegisterLogin from "./pages/RegisterLogin";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -17,6 +18,7 @@ function App() {
           <Navbar />
           <Switch>
             <Route exact path="/register-login" component={RegisterLogin} />
+            <PrivateRoute exact path="/Profile" component={Profile} />
             <PrivateRoute exact path="/" component={Home} />
           </Switch>
         </BrowserRouter>
