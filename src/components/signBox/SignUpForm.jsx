@@ -1,9 +1,11 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase";
+import { setDoc, doc, Timestamp } from "firebase/firestore";
+import { auth, db } from "../../firebase";
 import { useContext, useState } from "react";
 import { SignContext } from "./SignContext";
 import "./SignUp.css";
+import { useHistory } from "react-router-dom";
 
 const SignUpForm = (props) => {
   const [data, setData] = useState({
@@ -14,6 +16,7 @@ const SignUpForm = (props) => {
     error: null,
     loading: false,
   });
+  const history = useHistory();
   const { name, email, password, error, loading } = data;
   const { switchToSignIn } = useContext(SignContext);
 
@@ -24,7 +27,7 @@ const SignUpForm = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setData({ ...data, error: null, loading: true });
-    if (!name || !email || !password ) {
+    if (!name || !email || !password) {
       setData({ ...data, error: "All fields are required!" });
     }
 
@@ -34,8 +37,24 @@ const SignUpForm = (props) => {
         email,
         password
       );
-      console.log(result.user);
-    } catch (err) {}
+      await setDoc(doc(db, "users", result.user.uid), {
+        uid: result.user.uid,
+        name,
+        email,
+        createdAt: Timestamp.fromDate(new Date()),
+        isOnline: true,
+      });
+      setData({
+        name: "",
+        email: "",
+        password: "",
+        error: null,
+        loading: false,
+      });
+      history.replace("/");
+    } catch (err) {
+      setData({ ...data, error: err.message, loading: false });
+    }
   };
 
   return (
@@ -74,7 +93,9 @@ const SignUpForm = (props) => {
           placeholder="تایید رمز عبور"
         /> */}
         {error ? <p className="error">{error}</p> : null}
-        <button className="SubmitButton my-3">ورود به حساب کاربری</button>
+        <button className="SubmitButton my-3" disabled={loading}>
+        {loading?'لطفا صبر کنید':'ساختن حساب کاربری'}
+        </button>
       </form>
       <a className="MutedLink" href="#">
         اکانت ویگل دارید؟{" "}

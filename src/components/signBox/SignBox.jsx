@@ -29,7 +29,7 @@ const expandingTransition = {
   stiffness: 30,
 };
 
-const SignBox = () => {
+const SignBox = (props) => {
   const dark = useSelector((state) => state.dark);
   console.log(dark);
   const [isExpanded, setExpanded] = useState(false);

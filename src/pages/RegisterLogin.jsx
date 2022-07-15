@@ -1,6 +1,6 @@
 import SignBox from '../components/signBox/SignBox'
 
-const Register = () => {
+const RegisterLogin = () => {
     return ( 
         <div className="register-page">
             <SignBox/>
@@ -9,4 +9,4 @@ const Register = () => {
      );
 }
  
-export default Register;
+export default RegisterLogin;
