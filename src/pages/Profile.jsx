@@ -1,13 +1,21 @@
 import { useState, useEffect } from "react";
 import Img from "../utilities/images/erphha.jpg";
 import Camera from "../utilities/svg/Camera";
+import Delete from "../utilities/svg/Delete";
 import { storage, db, auth } from "../firebase";
-import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
+import {
+  ref,
+  getDownloadURL,
+  uploadBytes,
+  deleteObject,
+} from "firebase/storage";
 import { getDoc, doc, updateDoc } from "firebase/firestore";
+import { useHistory } from "react-router-dom";
 
 const Profile = () => {
   const [img, setImg] = useState("");
   const [user, setUser] = useState();
+  const history = useHistory();
 
   useEffect(() => {
     getDoc(doc(db, "users", auth.currentUser.uid)).then((docSnap) => {
@@ -23,6 +31,9 @@ const Profile = () => {
         );
 
         try {
+          if (user.avatarPath) {
+            await deleteObject(ref(storage, user.avatarPath));
+          }
           const snap = await uploadBytes(imgRef, img);
           const url = await getDownloadURL(ref(storage, snap.ref.fullPath));
 
@@ -32,14 +43,30 @@ const Profile = () => {
           });
           console.log(url);
           setImg("");
-        } catch (error) {
-          console.log(error.message);
+        } catch (err) {
+          console.log(err.message);
         }
       };
 
       uploadImg();
     }
   }, [img]);
+
+  const deleteImage = async () => {
+    try {
+      const confirm = window.confirm("Delete avatar?");
+      if (confirm) {
+        await deleteObject(ref(storage, user.avatarPath));
+        await updateDoc(doc(db, "users", auth.currentUser.uid), {
+          avatar: "",
+          avatarPath: "",
+        });
+        history.replace("/");
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
 
   return user ? (
     <section>
@@ -50,6 +77,7 @@ const Profile = () => {
             <label htmlFor="photo">
               <Camera />
             </label>
+            {user.avatar ? <Delete deleteImage={deleteImage}/> : null}
             <input
               type="file"
               accept="image/*"
@@ -63,7 +91,9 @@ const Profile = () => {
           <h3>{user.name}</h3>
           <p>{user.email}</p>
           <hr />
-          <small>عضویت در تاریخ: ...</small>
+          <small>
+            عضویت در تاریخ: {user.createdAt.toDate().toDateString()}
+          </small>
         </div>
       </div>
     </section>
