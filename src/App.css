@@ -74,13 +74,54 @@ section h3 {
   align-items: center;
 }
 
-.user-detail{
+.user-detail {
   display: flex;
   align-items: center;
 }
 
-.user-detail h4{
-  margin-left: 10px;
+.user-detail h4 {
+  margin-right: 10px;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid var(--color-4);
+}
+
+.user-status {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.online {
+  background: #34eb52;
+}
+
+.offline {
+  background: var(--color-5);
+}
+
+/* Messages */
+
+.messages-container {
+  position: relative;
+  width: 100%;
+}
+
+.messages-user {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 2px solid var(--color-6);
+}
+
+.no-conv {
+  font-size: 20px;
+  color: var(--color-4);
+  text-align: center;
+  margin-top: 20px;
 }
 
 /* Profile */
