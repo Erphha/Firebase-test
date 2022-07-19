@@ -1,9 +1,9 @@
 import Attachment from "../../utilities/svg/Attachment";
 
-const MessageForm = () => {
+const MessageForm = ({handleSubmit, text, setText}) => {
   return (
-    <div>
-      <form className="message-form">
+    
+      <form className="message-form" onSubmit={handleSubmit}>
         <label htmlFor="img">
           <Attachment />
         </label>
@@ -12,13 +12,14 @@ const MessageForm = () => {
           id="img"
           accept="image/*"
           style={{ display: "none" }}
+          
         />
         <div>
-            <input type="text" placeholder="Enter Message" />
-            <button className="btn">send</button>
+            <button type='submit' className="btn">send</button>
+            <input type="text" placeholder="Enter Message" value={text}
+          onChange={e=>setText(e.target.value)}/>
         </div>
       </form>
-    </div>
   );
 };
 
