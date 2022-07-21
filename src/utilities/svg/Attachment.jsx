@@ -1,12 +1,15 @@
+import React from 'react';
+
+
 const Attachment = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      styles={{
+      style={{
         width: "25px",
         height: "25px",
         cursor: "pointer",
-        color: "gray",
+        color: "gray"
       }}
       viewBox="0 0 20 20"
       fill="currentColor"

@@ -233,27 +233,27 @@ section .form {
   opacity: 0.8;
 }
 .message-wrapper.own {
-  text-align: right;
+  text-align: left;
 }
 .me {
   background: var(--color-3);
   color: white;
 }
 .friend {
-  background: var(--color-6);
+  background: var(--color-4);
 }
 .selected-user {
-  background: var(--color-6);
+  background: var(--color-5);
 }
 .truncate {
-  font-size: 14px;
+  font-size: 12px;
   white-space: nowrap;
-  width: 90%;
+  width: 80%;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 .truncate strong {
-  margin-right: 10px;
+  margin-left: 10px;
 }
 .unread {
   margin-left: 10px;
