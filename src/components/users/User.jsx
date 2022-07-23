@@ -16,6 +16,7 @@ const User = ({ user, selectUser, user1, chat }) => {
   }, []);
 
   return (
+    <>
     <div
       className={`user-wrapper ${chat.name === user.name && "selected-user"}`}
       onClick={() => selectUser(user)}
@@ -36,6 +37,17 @@ const User = ({ user, selectUser, user1, chat }) => {
             {data.text}</p>
       )}
     </div>
+    <div
+        onClick={() => selectUser(user)}
+        className={`sm-container ${chat.name === user.name && "selected-user"}`}
+      >
+        <img
+          src={user.avatar || Img}
+          alt="avatar"
+          className="avatar sm-screen"
+        />
+      </div>
+    </>
   );
 };
 

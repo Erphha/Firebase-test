@@ -107,6 +107,7 @@ const Home = () => {
     setImg("");
   };
   return (
+    
     <div className="home-container">
       <div className="users-container">
         {users.map((user) => (
